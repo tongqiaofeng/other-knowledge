@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    *{margin:0; padding:0;}
+    #main{
+      width:1000px;
+      margin:0 auto;
+    }
+    #banner{
+      width:1000px;
+      overflow:hidden;
+      position:relative;
+    }
+    #ul-imgs{
+      list-style:none;
+    }
+    #ul-imgs.transition{
+      transition:all .5s linear;
+    }
+    #ul-imgs>li{
+      width:1000px;
+      float:left;
+    }
+    #ul-imgs img{
+      width:1000px;
+    }
+    #ul-idxs{
+      width:100px;
+      margin:0 auto;
+      list-style:none;
+      position:absolute;
+      bottom:25px;
+      left:50%;
+      margin-left:-50px;
+    }
+    #ul-idxs>li{
+      float:left;
+      width:10px; height:10px;
+      background-color:#fff;
+      border-radius:5px;
+      margin:0 5px;
+      cursor:pointer;
+    }
+    #ul-idxs>li.active{
+      background-color:blue;
+    }
+    #btn-left,#btn-right{
+      width:60px;
+      height:100%;
+      position:absolute;
+      top:0;
+      background-repeat:no-repeat;
+      background-position:center;
+      cursor:pointer;
+    }
+    #btn-left{
+      left:20px;
+      background-image:url(image/carousel_item/left_ar.png);
+    }
+    #btn-right{
+      right:20px;
+      background-image:url(image/carousel_item/right_ar.png);
+    }
+    #btn-left:hover,#btn-right:hover{
+      background-size:40px 70px
+    }
+  </style>
+</head>
+<body>
+  <main id="main">
+    <div id="banner">
+      <div id="btn-left"></div>
+      <ul id="ul-imgs" style="width:5000px; margin-left:0px;">
+        <li><a href="javascript:;"><img src="image/carousel_item/carousel-1.jpg"></a></li>
+        <li><a href="javascript:;"><img src="image/carousel_item/carousel-2.jpg"></a></li>
+        <li><a href="javascript:;"><img src="image/carousel_item/carousel-3.jpg"></a></li>
+        <li><a href="javascript:;"><img src="image/carousel_item/carousel-4.jpg"></a></li>
+        <!--注意！最后li个数要比实际图片张数多1，最后一个li里的img是重复第一张li的图片-->
+        <li><a href="javascript:;"><img src="image/carousel_item/carousel-1.jpg"></a></li>
+      </ul>
+      <ul id="ul-idxs">
+        <!--虽然li个数比实际图片张数多1，但小圆点的个数不必多1-->
+        <li class="active"></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
+      <div id="btn-right"></div>
+    </div>
+  </main>
+  <script>
+    var i=0;//现在正在显示第几张图片，从0开始
+    var LIWIDTH=1000;//每个li的固定宽度
+    var DURATION=500;//每次轮播动画持续的时间
+    var LICOUNT=4;//li的总个数
+    //要移动的ul
+    var ulImgs=document.getElementById("ul-imgs");
+    //包含小圆点列表的ul
+    var ulIdxs=document.getElementById("ul-idxs");
+    //小圆点的元素列表
+    var lis=ulIdxs.children;
+    //从当前位置移动到任意一个范围内的位置
+    function moveTo(to){
+      //如果用户没有传入要跳到第几张图，就默认跳到当前图的下一个张
+      if(to==undefined){
+        to=i+1;
+      }
+      if(i==0){//如果滚动从头开始，再重新加上transition
+        ulImgs.className="transition";
+      }
+      i=to;//先将表示第几张图片的变量i变为目标位置
+      //再用i计算ulimgs的marginLeft距离
+      ulImgs.style.marginLeft=-i*LIWIDTH+"px";
+      //先删除所有小圆点的class
+      for(var li of lis){
+        li.className=""
+      }
+      if(i==LICOUNT){
+        i=0;
+        //当transition动画播放完之后，才
+        setTimeout(function(){
+          ulImgs.className="";//清掉transition属性
+          ulImgs.style.marginLeft=0;//将ulImgs拉回0位置
+        },DURATION)
+      }
+      //再给当前位置的小圆点添加class active
+      lis[i].className="active";
+    }
+  </script>
+</body>
+</html>

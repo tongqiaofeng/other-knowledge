@@ -1,0 +1,98 @@
+﻿#Git   git凭证
+代码托管工具:将代码从当前电脑传到远程端---> 传输、协作、版本控制
+git,svn
+传输：
+https://git-scm.com/downloads
+
+# 码云、github  : 网站，开源平台
+# github 
+# https://github.com/
+# 注册邮箱：
+sina.com,
+yahoo.com,
+163.com,
+126.com,
+outlook.com,
+hotmail.com
+邮箱用户名：密码： github用户名，密码：
+chrome插件：adblock,google,history
+
+图形验证码：
+create account --> 创建账户
+1. $0;
+2. somewhat experienced  单选
+3. 多选：design , development,research,program management
+4. professional
+5. 
+html,css,js,python,node,angular,react
+css3,canvas,echarts,ajax
+
+电脑需要安装git.exe
+
+①授权本台电脑可以使用github账号,生成密钥
+ssh-keygen -t rsa -C "xxx@xxx.com"  你的邮箱	----
+②敲三次回车
+③生成一串图形的乱码(c://user/.ssh/rsa文件2个)
+④将rsa.pub 使用editpuls打开  ctrl + a , ctrl + c	----
+⑤打开github.com 找到ssh and gpg key
+---> new ssh key ,ctrl + v			----
+
+配置 全局用户名和邮箱			----
+①git config --global user.name "xxxx"		
+②git config --global user.email "xxx@xxx.com"
+③ssh -T git@github.com
+yes
+---> hi,xxx ,you've authentic successfully...
+本地仓库 --  远程仓库
+本地仓库：
+创建文件夹  --> 进入文件夹
+
+①初始化本地虚拟仓库并提交到远程仓库：
+git init       # -->生成本地   .git  文件夹  --> 本地仓库
+echo "132321">>2.txt    # 输出一个文件
+git add 2.txt	   # 添加文件
+git commit -m "第一次提交"  #提交注释及文件到缓存区
+git remote add origin    xxx@github.comxxxx  #添加远程地址
+git push -u origin master  #推送到仓库
+
+
+②以后所有的推送
+git add 3.txt    / git add .
+git commit -m "第二次提交"
+git push
+
+回家下载
+git clone	'git仓库路径'
+
+
+更新文件
+git pull
+
+
+创建分支和切换分支的方式
+创建分支： git branch 分支名字
+切换到这个分支： git checkout 分支名字
+
+wxj294163
+
+镜像
+翻墙:  gitub官网查找方法,解决npm安装依赖问题
+proxy
+
+
+
+
+报错：
+    1.  ! [rejected]          master -> master (fetch first)
+        error: failed to push some refs to 'https://github.com/tongqiaofeng/watches.git'
+
+   因为github中的README.md文件不在本地代码目录中，可以通过如下命令进行代码合并
+   git pull --rebase origin master
+
+
+$ git add .
+
+$ git commit -m "更新"
+
+$ git push
+

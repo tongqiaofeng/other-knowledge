@@ -1,0 +1,17 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>city</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="cityPos">
+    <ion-list *ngFor="let mySelect of myCitys;let index=index" (click)="goTo(mySelect.Acronym)"> {{mySelect.Acronym}} </ion-list>
+  </div>
+  <div *ngFor="let mySelect of myCitys;let index=index">
+    <ion-list>
+      <ion-item id="{{mySelect.Acronym}}">{{mySelect.Acronym}}</ion-item>
+      <ion-list *ngFor="let cityName of mySelect;" [routerLink]="[ '/upload',cityName]"> {{cityName}}  </ion-list>
+    </ion-list>
+  </div>
+</ion-content>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+   <h1>收到消息:<span id="recMsg1"></span></h1> 
+   <h1>收到消息:<span id="recMsg2"></span></h1> 
+   <script>
+        /*   
+        console.log(document.cookie);
+        function getKey(key){
+            let cookies=JSON.parse('{"'+document.cookie.replace(/=/g,'":"').replace(/;\s+/g,'","')+'"}');
+            return cookies[key]
+        }
+        console.log(getKey("msg1"));
+        console.log(getKey("msg2"));
+        setInterval(function(){
+            recMsg1.innerHTML=getKey("msg1");
+            recMsg2.innerHTML=getKey("msg2");
+        },500) 
+        */  
+        function load(){
+            recMsg1.innerHTML=localStorage.getItem("msg1");
+            recMsg2.innerHTML=localStorage.getItem("msg2");
+        } 
+        load();
+        // 只要页面修改了localStoragezh中的值，都会自动触发其他页面中的storage事件
+        // 事件函数是回调函数  
+        window.addEventListener("storage",load)  
+   </script>
+</body>
+</html> 

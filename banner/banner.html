@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>立体轮播图</title>
+  <style>
+    .block {
+      position: relative;
+      width: 900px;
+      height: 370px;
+      margin: 0 auto;
+      overflow: hidden;
+    }
+
+    .imgae_div {
+      position: relative;
+      width: 900px;
+      height: 300px;
+    }
+
+    .imgae_div>div {
+      position: absolute;
+      width: 400px;
+      height: 200px;
+      transition: all 1s linear;
+
+    }
+
+    .imgae_div img {
+      width: 400px;
+      height: 200px;
+    }
+
+    .imgae_div>div:nth-child(1) {
+      top: 150px;
+      left: 250px;
+      z-index: 6;
+    }
+
+    .imgae_div>div:nth-child(2) {
+      top: 100px;
+      left: 0px;
+      z-index: 5;
+    }
+
+    .imgae_div>div:nth-child(3) {
+      top: 50px;
+      left: 0px;
+      z-index: 4;
+    }
+
+    .imgae_div>div:nth-child(4) {
+      top: 0px;
+      left: 250px;
+      z-index: 3;
+    }
+
+    .imgae_div>div:nth-child(5) {
+      top: 50px;
+      left: 500px;
+      z-index: 4;
+    }
+
+    .imgae_div>div:nth-child(6) {
+      top: 100px;
+      left: 500px;
+      z-index: 5;
+    }
+
+    .btn {
+      width: 900px;
+      height: 40px;
+      position: absolute;
+      top: 155px;
+      z-index: 999;
+      overflow: hidden;
+    }
+
+    .btn>img:nth-child(1) {
+      width: 30px;
+      background-color: rgba(164, 150, 243, 0.336);
+      display: block;
+      float: left;
+      text-align: center;
+      line-height: 40px;
+      margin-left: -30px;
+      cursor: pointer;
+      opacity: 0;
+      transition: all 0.5s linear;
+    }
+
+    .btn>img:nth-child(2) {
+      width: 30px;
+      background-color: rgba(164, 150, 243, 0.336);
+      display: block;
+      float: right;
+      text-align: center;
+      line-height: 40px;
+      margin-right: -30px;
+      cursor: pointer;
+      opacity: 0;
+      transition: all 0.5s linear;
+    }
+
+    .marright {
+      margin-right: 0px !important;
+      opacity: 1 !important;
+    }
+
+    .marleft {
+      margin-left: 0px !important;
+      opacity: 1 !important;
+    }
+
+    .point {
+      width: 108px;
+      height: 14px;
+      position: absolute;
+      bottom: 0;
+      left: 396px;
+      z-index: 10;
+
+    }
+
+    .point>div {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background-color: white;
+      float: left;
+      margin: 0 2px;
+      border: 2px solid black;
+      box-sizing: border-box;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="block">
+    <div class="imgae_div">
+      <div><img src="./img/111.jpg" alt=""></div>
+      <div><img src="./img/222.jpg" alt=""></div>
+      <div><img src="./img/333.jpg" alt=""></div>
+      <div><img src="./img/444.jpg" alt=""></div>
+      <div><img src="./img/555.jpg" alt=""></div>
+      <div><img src="./img/666.jpg" alt=""></div>
+    </div>
+    <div class="btn">
+      <img src="./img/left.png" width="25px" height="30px" />
+      <img src="./img/right.png" width="25px" height="30px" />
+    </div>
+    <div class="point">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  </div>
+  <script src="./index.js"></script>
+</body>
+
+</html>

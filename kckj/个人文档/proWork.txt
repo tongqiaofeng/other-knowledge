@@ -1,0 +1,17 @@
+1.ionic中获取/失去焦点
+    <ion-input placeholder="输入框" (ionBlur)="blurInput()" (ionFocus)="focusInput()"></ion-input>
+    ionFocus为输入框获取焦点的属性
+    ionBlur为输入框失去焦点的属性
+    .ts文件：
+        export class InputPage{ 
+            constructor(public navCtrl:NavController){...}
+            blurInput(){
+               console.log("ionBlur");
+             };
+             focusInput(){
+                 console.log("ionFocus");
+              };
+          }
+
+2.ionic锚点
+    

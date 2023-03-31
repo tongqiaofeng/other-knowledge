@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    let lilei = {
+      age: 12,
+      name: "lilei",
+      score: {
+        math: 99,
+        english: 98, 
+        chinese: 100
+      },
+      city: ["陕西省", "宝鸡市"]
+    }
+    // 浅拷贝
+    
+    function clone(obj) {
+      let newLilei = {};
+      for (let key in obj) {
+        newLilei[key] = obj[key];
+      }
+      return newLilei;
+    }
+    let lilei2=clone(lilei);
+    lilei2.score.math=103;
+    console.log(lilei);
+    console.log(lilei2);
+    
+    
+
+    // 深拷贝
+    /*
+    function clone(obj){
+      if(obj===null){
+        return null;
+      }else if({}.toString.call(obj)=="[object Array]"){
+        let newArr=[];
+        newArr=obj.slice();
+        return newArr;
+      }
+      let newObj={};
+      for(let key in obj){
+        if(typeof obj[key]!=="object"){
+          newObj[key]=obj[key];
+        }else{
+          newObj[key]=clone(obj[key]);
+        }
+      }
+      return newObj;
+    }
+    let lilei2=clone(lilei);
+    lilei2.score.math=77;
+    console.log(lilei);
+    console.log(lilei2);*/ 
+  </script>
+</body>
+
+</html>

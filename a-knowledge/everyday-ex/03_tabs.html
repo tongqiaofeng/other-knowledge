@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>读取并修改元素的属性</title>
+  <link rel="stylesheet" href="css/3.css">
+</head>
+<body>
+  <h2>实现多标签页效果</h2>
+  <div class="tabs">
+    <ul id="tab">
+      <li>
+        <a href="javascript:;" data-click="tab" data-div="content1">10元套餐</a>
+      </li>
+      <li>
+        <a href="javascript:;" data-click="tab" data-div="content2">30元套餐</a>
+      </li>
+      <li>
+        <a href="javascript:;" data-click="tab" data-div="content3">50元包月</a>
+      </li>
+    </ul>
+    <div id="container">
+      <div id="content1">
+        10元套餐详情：
+        <br />&nbsp;每月套餐内拨打100分钟，超出部分2毛/分钟
+      </div>
+      <div id="content2">
+        30元套餐详情：
+        <br />&nbsp;每月套餐内拨打300分钟，超出部分1.5毛/分钟
+      </div>
+      <div id="content3">
+        50元包月详情：
+        <br />&nbsp;每月无限量随心打
+      </div>
+    </div>
+  </div>
+  <script>
+    //1.查找触发事件的元素
+    var tabs=document.querySelectorAll("div.tabs>ul#tab>li>a[data-click='tab']");
+    //console.log(tabs);
+    //2.绑定事件处理函数
+    var zIndex=10; //决定每个div谁显示在最上层
+    for(var tab of tabs){
+      tab.onclick=function(){
+        var tab=this;
+        //3.查找要修改的元素
+        //找到每个触发事件元素的属性data-div内的id值
+        var id=tab.getAttribute("data-div");
+        //通过id值找到每个要修改的div元素
+        var div=document.getElementById(id);
+        //4.修改元素
+        div.style.zIndex=zIndex;
+        zIndex++;
+      }
+    }  
+  </script>
+</body>
+</html>

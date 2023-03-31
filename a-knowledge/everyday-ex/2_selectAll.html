@@ -1,0 +1,102 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8" />
+	<title>全选和取消全选</title>
+</head>
+
+<body>
+	<h2>管理员列表</h2>
+	<table border="1px" width="500px">
+		<thead>
+			<tr>
+				<th><input type="checkbox" />全选</th>
+				<th>管理员ID</th>
+				<th>姓名</th>
+				<th>操作</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td><input type="checkbox" /></td>
+				<td>1</td>
+				<td>Tester</td>
+				<td>修改 删除</td>
+			</tr>
+			<tr>
+				<td><input type="checkbox" /></td>
+				<td>2</td>
+				<td>Manager</td>
+				<td>修改 删除</td>
+			</tr>
+			<tr>
+				<td><input type="checkbox" /></td>
+				<td>3</td>
+				<td>Analyst</td>
+				<td>修改 删除</td>
+			</tr>
+			<tr>
+				<td><input type="checkbox" /></td>
+				<td>4</td>
+				<td>Admin</td>
+				<td>修改 删除</td>
+			</tr>
+		</tbody>
+	</table>
+	<button>删除选定</button>
+	<script>
+		(function () {
+			//1. 查找触发事件的元素
+			//查找table下thead下tr下第一个th中的input
+			var chbAll = document.querySelector(
+				"table>thead>tr>th:first-child>input"
+			);
+			//tbody下所有tr中第一个td中的input
+			var chbs = document.querySelectorAll(
+				"table>tbody>tr>td:first-child>input"
+			);
+			//2. 绑定事件处理函数
+			chbAll.onclick = function () {
+				//var chbAll=this;
+				//3. 查找要修改的元素
+				//已在外部找过，可直接使用chbs集合
+				//4. 修改元素
+				//遍历chbs中每个chb元素对象
+				for (var chb of chbs) {
+					//当前chb的checked状态和chbAll的checked状态始终保持一致就行
+					chb.checked = chbAll.checked;
+				}
+			}
+
+			//1. 查找触发事件的元素
+			//已在开头找过，可直接使用chbs集合
+			//2. 绑定事件处理函数
+			//遍历chbs中每个chb元素对象
+			for (var chb of chbs) {
+				//每遍历一个，都要绑定单击事件处理函数
+				chb.onclick = function () {
+					var chb = this;
+					//3. 查找要修改的元素：chbAll
+					//4. 修改元素
+					//如果当前chb是取消选中,则chbAll一定不选
+					if (chb.checked == false) {
+						chbAll.checked = false;
+					} else { //否则
+						//先查找tbody中tr下第一个td中未选中的input
+						var unchecked =
+							document.querySelector(
+								"tbody>tr>td:first-child>input:not(:checked)"
+							)
+						//如果没找到未选中的chb，就可全选
+						if (unchecked == null)
+							chbAll.checked = true;
+					}
+				}
+			}
+		})()
+		//chbAll应该释放？
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>全选和取消全选</title>
+</head>
+
+<body>
+  <h2>管理员列表</h2>
+  <table border="1px" width="500px">
+    <thead>
+      <tr>
+        <th>
+          <input type="checkbox" />全选</th>
+        <th>管理员ID</th>
+        <th>姓名</th>
+        <th>操作</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <input type="checkbox" />
+        </td>
+        <td>1</td>
+        <td>Tester</td>
+        <td>修改 删除</td>
+      </tr>
+      <tr>
+        <td>
+          <input type="checkbox" />
+        </td>
+        <td>2</td>
+        <td>Manager</td>
+        <td>修改 删除</td>
+      </tr>
+      <tr>
+        <td>
+          <input type="checkbox" />
+        </td>
+        <td>3</td>
+        <td>Analyst</td>
+        <td>修改 删除</td>
+      </tr>
+      <tr>
+        <td>
+          <input type="checkbox" />
+        </td>
+        <td>4</td>
+        <td>Admin</td>
+        <td>修改 删除</td>
+      </tr>
+    </tbody>
+  </table>
+  <button>删除选定</button>
+  <script>
+    (function () {
+      //点击全选，下边四个复选框全选中
+      //1.查找触发事件的元素
+      //全选按钮
+      var chbAll = document.querySelector("table>thead>tr>th:first-child>input");
+      //单个每个复选按钮
+      var chbs = document.querySelectorAll("table>tbody>tr>td:first-child>input");
+      //2.绑定事件处理函数
+      chbAll.onclick = function () {
+        var chbAll = this;
+        //3.查找要修改的元素
+        //要修改的元素为chbs
+        //4.修改元素
+        for (var chb of chbs) {
+          chb.checked=chbAll.checked;
+        }
+      }
+
+      //下边四个复选框决定全选与否
+      //1.查找触发事件元素 chbs
+      //2.绑定事件处理函数
+      for(var chb of chbs){
+        chb.onclick=function(){
+          var chb=this;
+        //3.查找要修改的元素 chbAll
+        //4.修改元素
+        //查找未选中的chb
+        var unchecked=document.querySelector("table>tbody>tr>td:first-child>input:not(:checked)");
+        if(unchecked==null){ //如果未选中的chb为空
+          chbAll.checked=true;
+        }else{
+          chbAll.checked=false;
+        }
+        }
+      }
+    })()
+  </script>
+</body>
+
+</html>

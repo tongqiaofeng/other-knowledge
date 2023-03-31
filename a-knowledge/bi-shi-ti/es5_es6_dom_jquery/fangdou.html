@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body style="height: 1000px;">
+  <button id="btn" style="position: fixed;right:0;top:100px;">加载更多</button>
+  <script>
+    // 实现不让浏览器频繁的发送请求
+    // 节流：第一次发送请求后，只要响应没回来，就不能发送第二次。如：点击一个按钮，发送一次请求
+    // 定义开关变量，标记是否可以发送下次请求
+    let canClick=true;
+    btn.onclick=function(){
+      if(canClick){ //如果当前开关开着，说明可以单击
+        canClick=false;  //先关闭开关
+        // 再发送请求
+        console.log("发送ajax请求，加载更多数据...");
+        setTimeout(function(){
+          console.log("加载完成");
+          // 在请求的回调函数结尾，重新打开开关，允许下次单击
+          canClick=true;
+        },3000)
+      }
+    }
+    // 防抖：只要不是最后一次触发，就不执行异步请求。如：拖拽、滚动
+    let timer;  //undefined
+    window.onscroll=function(){
+      // 如果当前timer不是空，说明前面有一个等待的请求还未发送。就停止前面的等待
+      if(timer!==undefined){
+        clearTimeout(timer);
+      }
+      // 再重新开始下一轮等待
+      timer=setTimeout(function(){
+        // 当200ms内未发生滚动时，才发送正式的ajax请求
+        console.log("发送ajax请求，加载更多数据...");
+      },200)
+    }
+  </script>
+</body>
+</html>

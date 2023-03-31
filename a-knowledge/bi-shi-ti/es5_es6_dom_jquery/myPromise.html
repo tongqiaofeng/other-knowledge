@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function MyPromise(task){
+      console.log("自己的Promise");
+      let self=this;  //获得当前对象
+      // 在对象内部，维持一个状态变量。默认pending，说明不能继续下一项任务；
+      //  如果状态改成open，说明可以继续下一项任务
+      self.status="pending";
+      self.nextTask;  //保存下一项任务函数
+      // 定义open函数：其中包含打开开关时要执行的操作
+      function open(data){
+        // 如果状态为挂起状态
+        if(self.status=="pending"){
+          // 先把状态改为open
+          self.status="open";
+          // 调用提前保存好的then给的下一项任务函数，并将open的参数继续流传给下一个任务
+          if(typeof self.nextTask==="function")
+            self.nextTask(data);
+        }
+      }
+      // 将open函数交给当前任务，在当前任务内，等执行完，自动调用open
+      task(open);
+    }
+    MyPromise.prototype.then=function(nextTask){
+      // 当用当前对象调用then时，将then中的下一个任务函数保存到当前对象的nextTask变量，等待执行
+      this.nextTask=nextTask;
+    }
+  </script>
+  <script>
+    function liang(){
+      return new MyPromise(
+        function(open){
+          let bang="亮的接力棒";
+          console.log("亮拿着 "+bang+" 起跑...");
+          setTimeout(function(){
+            console.log("亮拿着 "+bang+" 到达终点");
+            open(bang);
+          },6000) 
+        }
+      )
+    }
+    function ran(bang){
+      return new MyPromise(
+        function(open){
+          console.log("然拿着 "+bang+" 起跑...");
+          setTimeout(function(){
+            console.log("然拿着 "+bang+" 到达终点");
+            open(bang);
+          },4000)
+        }
+      )
+    }
+    liang().then(ran)
+  </script>
+</body>
+</html>

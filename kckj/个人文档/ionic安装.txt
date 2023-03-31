@@ -1,0 +1,11 @@
+创建 ionic项目
+ 
+ 1.必须安装node.js(最新稳定版本)
+ 2.npm i -g cordova ionic  / cnpm i -g ionic cordova
+ 3.cd 到要创建ionic项目所在目录
+       ionic start ionicdemo tabs
+ 4.npm i 的时候可以按一下ctrl+c结束,cd到刚才的项目目录
+     cd ionicdemo
+	  cnpm install
+	  
+ 5.ionic serve 运行项目

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <h1 id="num1"></h1>
+  <button id="start">启动</button>
+  <script>
+    // js中的多线程
+    start.onclick=function(){
+      // 启动worker
+      var w=new Worker("worker.js");
+      // 给worker设置监听
+      w.onmessage=function(e){
+        // 操作返回结果
+        num1.innerHTML=e.data;
+      }
+      // 向worker发送执行指令
+      w.postMessage("");
+    }
+  </script>
+</body>
+</html>

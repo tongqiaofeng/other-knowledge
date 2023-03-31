@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 要求函数必须支持promise
+    function liang(){
+      return new Promise(
+        function(open){
+          let bang="亮的接力棒";
+          console.log("亮拿着 "+bang+" 起跑...");
+          setTimeout(function(){
+            console.log("亮拿着 "+bang+" 到达终点");
+            open(bang);
+          },6000) 
+        }
+      )
+    }
+    function ran(bang){
+      return new Promise(
+        function(open){
+          console.log("然拿着 "+bang+" 起跑...");
+          setTimeout(function(){
+            console.log("然拿着 "+bang+" 到达终点");
+            open(bang);
+          },4000)
+        }
+      )
+    }
+    function dong(bang){
+      return new Promise(
+        function(open){
+          console.log("东拿着 "+bang+" 起跑...");
+          setTimeout(function(){
+            console.log("东拿着 "+bang+" 到达终点");
+            open(bang);
+          },2000)
+        }
+      )
+    }
+    // ES7
+    (async function(){
+      let bang=await liang();  //代替.then()
+      //     ← open(bang)
+      // 通过await将open(bang)相当于return bang
+      bang=await ran(bang);
+      // ← open(bang)
+      await dong(bang);
+      console.log("比赛结束");
+    })()
+    // ES6
+    /*
+    liang()
+    .then(ran)
+    .then(dong)
+    .then(
+      function(){
+        console.log("比赛结束");
+      }
+    )
+    */
+  </script>
+</body>
+</html>

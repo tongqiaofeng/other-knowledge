@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // type:get/post
+    // url:"http://localhost:3000/"
+    // "http://localhost:3000/details"
+    // "http://localhost:3000/users"
+    // data:参数  lid=2  uname=lucky&upwd=123456
+    // dataType:""或"json"
+    // 如果服务端返回的是json格式字符串，就通过dataType通知ajax函数自动转换为对象
+    // 如果dataType什么也不写，说明服务端很可能返回的不是json格式字符串，就不要强转
+    function ajax({ type, url, data, dataType }) {
+      return new Promise(function (open) {
+        let xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState == 4 & xhr.status == 200) {
+            let res;
+            if (dataType === "json") {
+              res = JSON.parse(xhr.responseText)
+            } else {
+              res = xhr.responseText;
+            }
+            open(res);
+            // 调用open打开阀门，执行.then内的函数
+            // →.then(function(res){...})
+          }
+        }
+        if (type == "get" && data !== undefined) {
+          url += "?" + data;
+        }
+        xhr.open(type, url, true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        if (type == "post") {
+          xhr.send(data);
+        } else {
+          xhr.send();
+        }
+        // http://localhost:3000/home.html
+      })
+    }
+    ajax({
+      type: "get",
+      url: "http://localhost:3000/",
+      dataType: "json"
+    }).then(
+      function (res) {
+        console.log(res);
+      }
+    );
+    ajax({
+      type: "get",
+      url: "http://localhost:3000/details",
+      data: "lid=2",
+      dataType: "json"
+    }).then(
+      function (res) {
+        for (let key in res) {
+          console.log(key + ":" + res[key]);
+        }
+      }
+    );
+    ajax({
+      type: "post",
+      url: "http://localhost:3000/users",
+      data: "uname=lucky&upwd=123456"
+    }).then(
+      function (res) {
+        alert(res);
+      }
+    );
+  </script>
+</body>
+
+</html>

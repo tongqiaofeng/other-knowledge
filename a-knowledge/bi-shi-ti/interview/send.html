@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="msg1">
+    <br> 
+    <input type="text" id="msg2">
+    <button id="send">发送</button>
+    <script>
+        send.onclick=function(){
+            // trim() 删除字符串头尾空格
+            if(msg1.value.trim()!=="" && msg2.value.trim()!==""){
+                /* document.cookie="msg1="+msg1.value.trim();
+                   document.cookie="msg2="+msg2.value.trim();*/
+                localStorage.setItem("msg1",msg1.value.trim());
+                localStorage.setItem("msg2",msg2.value.trim());
+            }
+        } 
+    </script>
+</body>
+</html>
